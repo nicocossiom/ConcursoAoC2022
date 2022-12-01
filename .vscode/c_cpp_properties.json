@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/opt/homebrew/Cellar/gcc/12.2.0/bin/aarch64-apple-darwin22-gcc-12",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-gcc",
+        }
+    ],
+    "version": 4
+}
