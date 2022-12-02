@@ -1,4 +1,5 @@
 {
+    "C_Cpp.loggingLevel": "Debug",
     "files.associations": {
         "*.excalidraw": "json",
         "*.excalidrawlib": "json",
@@ -81,6 +82,18 @@
         "iterator": "cpp",
         "memory_resource": "cpp",
         "utility": "cpp",
-        "stop_token": "cpp"
-    }
+        "stop_token": "cpp",
+        "filesystem": "cpp",
+        "__std_stream": "cpp",
+        "__tree": "cpp",
+        "any": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "typeindex": "cpp",
+        "cinttypes": "cpp"
+    },
+    "C_Cpp.dimInactiveRegions": true,
+    "C_Cpp.errorSquiggles": "Disabled",
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "esbonio.sphinx.confDir": ""
 }

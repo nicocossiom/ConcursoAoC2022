@@ -7,28 +7,29 @@
 #include <fstream>
 #include <queue>
 #include <string>
+#include <aocutils.h>
 
 using namespace std;
 
 
-typedef priority_queue<int, vector<int>, greater<int> > pq;
 
 class FixedSizePriorityQueue
-    : public pq{
+    : public priority_queue<int, vector<int>, greater<int> >{
 
     public:
+    typedef priority_queue<int, vector<int>, greater<int> > super;
     int max_size;
 
     FixedSizePriorityQueue(int max_size): max_size(max_size) {}
     
     bool push(int x) {
         if (size() < max_size) {
-            pq::push(x);
+            super::push(x);
             return true;
         }
         if (size() == max_size && size() != 0 && x > top()) {
             pop();
-            pq::push(x);
+            super::push(x);
             return true;
         }
         return false;
@@ -48,8 +49,8 @@ int main() {
     FixedSizePriorityQueue q(3);    
     string line;
     int total_cal = 0;
-    fstream input_file ("input2", ios::in);
-    while (getline(input_file, line)) {
+    fstream input = get_input_stream(1, ChallengePart::B);
+    while (getline(input, line)) {
         if (line.empty()) {
             q.push(total_cal);
             total_cal = 0;

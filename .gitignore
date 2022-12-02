@@ -7,3 +7,5 @@
 *.dSYM
 # ignore .DS_Store files
 .DS_Store
+# ignore cmake build
+build
