@@ -9,7 +9,6 @@
 #include <fstream>  
 using std::string;
 // declare enum with 2 options for the part of challenge
-enum ChallengePart { A, B };
 
-std::fstream get_input_stream(int day_of_challenge, ChallengePart part_of_challenge); 
+std::fstream get_input_stream(int day_of_challenge,int part_of_challenge); 
 #endif // AOCUTILS_H

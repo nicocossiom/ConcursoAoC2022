@@ -11,6 +11,29 @@
 
 using namespace std;
 
+void parte1() {
+    cout << "Parte 1" << endl;
+    string line;
+    int max_cal = 0;
+    
+    fstream input = get_input_stream(1, 1);
+    int current_cal = 0;
+
+    while (getline(input, line)) {
+        if (line.empty()) {
+            if (current_cal > max_cal) {
+                max_cal = current_cal;
+            }
+            current_cal = 0;
+        } else {
+            int cal_item = stoi(line);
+            current_cal += cal_item;
+        }
+    }
+    cout << max_cal << endl;
+}
+
+
 
 
 class FixedSizePriorityQueue
@@ -45,11 +68,12 @@ class FixedSizePriorityQueue
     }
 };
 
-int main() {
+void parte2() {
+    cout << "Parte 2" << endl;
     FixedSizePriorityQueue q(3);    
     string line;
     int total_cal = 0;
-    fstream input = get_input_stream(1, ChallengePart::B);
+    fstream input = get_input_stream(1, 2);
     while (getline(input, line)) {
         if (line.empty()) {
             q.push(total_cal);
@@ -67,5 +91,11 @@ int main() {
         sum += val;
     }
     cout << sum << endl;
+}
+
+int main () {
+    cout << "Dia 1" << endl;
+    parte1();
+    parte2();
     return 0;
 }
