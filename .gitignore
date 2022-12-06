@@ -9,3 +9,5 @@
 .DS_Store
 # ignore cmake build
 build
+.clj-kondo/
+.lsp/

@@ -17,19 +17,18 @@ void parte1() {
     string line;
     while (getline(input, line)) {
         int item_size = line.length()/2;
-        string first = line.substr(0, item_size);
-        string second = line.substr(item_size, item_size);
+        continue;
 
     }
 }
 
 
-int parte2() {
+void parte2() {
     cout << "Parte 2" << endl;
     string line; 
     fstream input = get_input_stream(e, 2);
     while (getline(input, line)) {
-        
+        continue;
     }
 }
 
