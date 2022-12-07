@@ -4,6 +4,9 @@ set(CXX_STANDARD 20)
 set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 include_directories(utils)
+find_package(Boost 1.8.0 REQUIRED COMPONENTS program_options)
+INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
+
 include(FetchContent)
 
 FetchContent_Declare(fmt
