@@ -16,7 +16,7 @@ using namespace std;
 
 void parte1() {
     cout << "Parte 1" << endl;
-    fstream input = get_input_stream(3, 1);
+    fstream input = get_input_stream(3);
     string line;
     int total = 0; 
     while (getline(input, line)) {
@@ -36,7 +36,7 @@ void parte1() {
 
 void parte2() {
     cout << "Parte 2" << endl;
-    fstream input = get_input_stream(3, 2);
+    fstream input = get_input_stream(3);
     string line;
     vector<string> lines;
     int total = 0; 

@@ -60,7 +60,7 @@ void read_input(fstream& input, vector<deque<char>> &piles, vector<vector<int>> 
 
 void parte1() {
     cout << "Parte 1" << endl;
-    fstream input = get_input_stream(5, 1);
+    fstream input = get_input_stream(5);
     // read lines from input into string vector
     vector<vector<int>> instructions;
     vector<deque<char>> piles; 
@@ -89,7 +89,7 @@ void parte1() {
 
 void parte2() {
     cout << endl << "Parte 2" << endl;
-    fstream input = get_input_stream(5, 1);
+    fstream input = get_input_stream(5);
     // read lines from input into string vector
     vector<vector<int>> instructions;
     vector<deque<char>> piles; 

@@ -91,7 +91,11 @@
         "set": "cpp",
         "typeindex": "cpp",
         "cinttypes": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "source_location": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "unordered_set": "cpp"
     },
     "C_Cpp.dimInactiveRegions": true,
     "C_Cpp.errorSquiggles": "Disabled",

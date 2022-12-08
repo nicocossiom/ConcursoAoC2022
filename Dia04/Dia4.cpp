@@ -27,7 +27,7 @@ vector<vector<int>> separate_into_pair_of_pairs(string &to_separate){
 
 void parte1() {
     cout << "Parte 1" << endl;
-    fstream input = get_input_stream(4, 1);
+    fstream input = get_input_stream(4);
     string line;
     int number_overlappings = 0;
     while (getline(input, line)) {
@@ -45,7 +45,7 @@ void parte1() {
 void parte2() {
     cout << "Parte 2" << endl;
     string line; 
-    fstream input = get_input_stream(4, 2);
+    fstream input = get_input_stream(4);
     int number_overlappings = 0; 
     while (getline(input, line)) {
         vector<vector<int>> pairs = separate_into_pair_of_pairs(line);

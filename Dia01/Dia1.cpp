@@ -16,7 +16,7 @@ void parte1() {
     string line;
     int max_cal = 0;
     
-    fstream input = get_input_stream(1, 1);
+    fstream input = get_input_stream(1);
     int current_cal = 0;
 
     while (getline(input, line)) {
@@ -73,7 +73,7 @@ void parte2() {
     FixedSizePriorityQueue q(3);    
     string line;
     int total_cal = 0;
-    fstream input = get_input_stream(1, 2);
+    fstream input = get_input_stream(1);
     while (getline(input, line)) {
         if (line.empty()) {
             q.push(total_cal);

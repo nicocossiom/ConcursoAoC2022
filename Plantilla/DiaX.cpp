@@ -13,7 +13,7 @@ using namespace std;
 
 void parte1() {
     cout << "Parte 1" << endl;
-    fstream input = get_input_stream(3, 1);
+    fstream input = get_input_stream(3);
     string line;
     while (getline(input, line)) {
         int item_size = line.length()/2;
@@ -26,7 +26,7 @@ void parte1() {
 void parte2() {
     cout << "Parte 2" << endl;
     string line; 
-    fstream input = get_input_stream(e, 2);
+    fstream input = get_input_stream(34\);
     while (getline(input, line)) {
         continue;
     }

@@ -18,7 +18,7 @@ int translate_char(char c) {
 
 int parte1() {
     cout << "Parte 1" << endl;
-    fstream input = get_input_stream(2, 1);
+    fstream input = get_input_stream(2);
     string line;
     int score = 0;
     while(getline(input, line)) {
@@ -35,7 +35,7 @@ int parte1() {
 
 void parte2() {
     cout << "Parte 2" << endl;
-    fstream input = get_input_stream(2, 2);
+    fstream input = get_input_stream(2);
     string line;
     int score = 0;
     while(getline(input, line)) {

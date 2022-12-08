@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 project(AoC2022 VERSION 0.1.0 LANGUAGES CXX)
-set(CXX_STANDARD 20)
+set(CXX_STANDARD 23)
 set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 include_directories(utils)

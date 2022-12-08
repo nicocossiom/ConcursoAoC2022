@@ -25,7 +25,7 @@ bool valid (string& to_check){
 
 void parte1() {
     cout << "Parte 1" << endl;
-    fstream input = get_input_stream(6, 1);
+    fstream input = get_input_stream(6);
     string line;
     getline(input, line);
     int number_until_valid = 14; 
@@ -43,7 +43,7 @@ void parte1() {
 void parte2() {
     cout << "Parte 2" << endl;
     string line; 
-    fstream input = get_input_stream(6, 2);
+    fstream input = get_input_stream(6);
     while (getline(input, line)) {
         continue;
     }

@@ -13,16 +13,16 @@
 using namespace std;
 enum IOSItemType {IFILE, IDIRECTORY};
 
-class IOSItem{   
+class FSItem{   
     public:
         string name;
         IOSItemType type;
         int size;
-        IOSItem* parent_item;
-        vector<IOSItem*> files;
-        vector<IOSItem*> directories;
-        IOSItem* directory;
-        IOSItem(string name, int size, IOSItemType type, IOSItem* cwd)
+        FSItem* parent_item;
+        vector<FSItem*> files;
+        vector<FSItem*> directories;
+        FSItem* directory;
+        FSItem(string name, int size, IOSItemType type, FSItem* cwd)
         : name(name), type(type), size(size)  {
             if (type == IDIRECTORY){
                 if(cwd != nullptr){
@@ -45,17 +45,17 @@ class IOSItem{
         
 };
 
-void process_ls(vector<string>& command_ouput, IOSItem* cwd){
+void process_ls(vector<string>& command_ouput, FSItem* cwd){
     for (auto& line : command_ouput){
         regex dir_regex ("dir (.*)");
         regex file_regex ("\\d+ (.*)");
         smatch dir_match;
         smatch file_match;
         if (regex_search(line, dir_match, dir_regex)){
-            new IOSItem(dir_match[1], 0, IDIRECTORY, cwd);
+            new FSItem(dir_match[1], 0, IDIRECTORY, cwd);
         }
         else if (regex_search(line, file_match, file_regex)){
-            new IOSItem (file_match[1], stoi(file_match[0].str()), IFILE, cwd);
+            new FSItem (file_match[1], stoi(file_match[0].str()), IFILE, cwd);
         }
     }
 }
@@ -70,11 +70,11 @@ bool next_line_if_not_command(fstream& input, string& line){
     return !res;
 }
 
-IOSItem* construct_fs(fstream& input){
+FSItem* construct_fs(fstream& input){
     string line;
     vector<string> command_ouput;
-    IOSItem* root_dir = new IOSItem("/", 0, IDIRECTORY, nullptr);
-    IOSItem* cwd = root_dir;
+    FSItem* root_dir = new FSItem("/", 0, IDIRECTORY, nullptr);
+    FSItem* cwd = root_dir;
     getline(input, line); //skip first line it's root dir anyways
     while (getline(input, line)) {
         if (line[0]=='$'){
@@ -110,7 +110,7 @@ IOSItem* construct_fs(fstream& input){
     return root_dir;
 }
 
-void traverse_tree(IOSItem* item, int& total_size){
+void traverse_tree(FSItem* item, int& total_size){
     // cout << item->name << " " << item->size << endl;
     if(item->size < 100000) {
         total_size += item->size;
@@ -122,16 +122,16 @@ void traverse_tree(IOSItem* item, int& total_size){
 
 void parte1() {
     cout << "Parte 1" << endl;
-    fstream input = get_input_stream(7, 1);
-    IOSItem* root_dir = construct_fs(input);
+    fstream input = get_input_stream(7);
+    FSItem* root_dir = construct_fs(input);
     int total_size = 0;
     traverse_tree(root_dir, total_size);
     cout << "Total sum of sizes of items with size < 100000 is: " << total_size << endl;
 }
 #define AVAILABLE_SIZE 70000000
 #define SIZE_OF_UPDATE 30000000
-void get_mininum_dir(IOSItem* item, int& best_size, int& size_of_update){
-    cout << item->name << " " << item->size << endl;
+void get_mininum_dir(FSItem* item, int& best_size, int& size_of_update){
+    // cout << item->name << " " << item->size << endl;
     if(item->size >= size_of_update && item->size < best_size) {
         best_size = item->size;
     }
@@ -145,8 +145,8 @@ void get_mininum_dir(IOSItem* item, int& best_size, int& size_of_update){
 void parte2() {
     cout << "Parte 2" << endl;
     string line; 
-    fstream input = get_input_stream(7, 1);
-    IOSItem* root_dir = construct_fs(input);
+    fstream input = get_input_stream(7);
+    FSItem* root_dir = construct_fs(input);
     int needed_size = abs(AVAILABLE_SIZE - root_dir->size - SIZE_OF_UPDATE);
     cout << "Need to delete size: " << abs(needed_size) << endl;
     int total_size = root_dir->size;
