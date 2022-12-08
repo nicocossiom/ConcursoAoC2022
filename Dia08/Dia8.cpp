@@ -8,8 +8,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
-#include <ranges>
-#include <boost/range/adaptor/reversed.hpp>
+#include <chrono> 
 
 
 using namespace std;
@@ -58,28 +57,24 @@ void parte1() {
     Matrix trees_matrix = create_matrix_from_input(input);
     auto trees_matrix_transposed = transpose_matrix(trees_matrix);
     int visible_trees = trees_matrix[0].size() * 2 + trees_matrix.size() * 2 -4; // outer border
-    cout << "Outer border: " << visible_trees << endl;
-    matrix_printer(trees_matrix);
-    matrix_printer(trees_matrix_transposed);
     for (int i = 1; i < trees_matrix.size()-1; i++) {
         auto row = trees_matrix[i];
         for(int j = 1; j < row.size()-1; j++) {
             int elem = trees_matrix[i][j];
-                auto col = trees_matrix_transposed[j];
-                int max_in_row_to_left = *max_element(row.begin(), row.begin() + j );
-                int max_in_row_to_right = *max_element(row.begin() + j + 1, row.end());
-                int max_in_col_left = *max_element(col.begin(), col.begin() + i );
-                int max_in_col_right = *max_element(col.begin() + i + 1, col.end());
-                cout << "(" << i << "," << j << "): " << elem << " Maxs: " << max_in_row_to_left << " " << max_in_row_to_right << " " << max_in_col_left << " " << max_in_col_right;
-                vector <int> maxs = {max_in_row_to_left, max_in_row_to_right, max_in_col_left, max_in_col_right};
-                for (auto max: maxs) { 
-                    if (elem > max) {
-                        visible_trees++; 
-                        cout << " <-- Visible tree";
-                        break;
-                    }
+            auto col = trees_matrix_transposed[j];
+            int max_in_row_to_left = *max_element(row.begin(), row.begin() + j );
+            int max_in_row_to_right = *max_element(row.begin() + j + 1, row.end());
+            int max_in_col_left = *max_element(col.begin(), col.begin() + i );
+            int max_in_col_right = *max_element(col.begin() + i + 1, col.end());
+            // cout << "(" << i << "," << j << "): " << elem << " Maxs: " << max_in_row_to_left << " " << max_in_row_to_right << " " << max_in_col_left << " " << max_in_col_right;
+            vector <int> maxs = {max_in_row_to_left, max_in_row_to_right, max_in_col_left, max_in_col_right};
+            for (auto max: maxs) { 
+                if (elem > max) {
+                    visible_trees++; 
+                    // cout << " <-- Visible tree";
+                    break;
                 }
-                cout << endl;
+            }
         }
     }
     cout << "Total visible trees: " << visible_trees << endl;
@@ -88,8 +83,13 @@ void parte1() {
 int rate(vector<int>& vec, vector<int>::iterator& it) {
     if (it == vec.end()) 
         return vec.size();
-    
-    return  abs(distance(vec.begin(), it)) + 1;
+    return abs(distance(vec.begin(), it)) + 1;
+}
+
+int rate(vector<int>& vec, vector<int>::reverse_iterator& it) {
+    if (it == vec.rend()) 
+        return vec.size();
+    return abs(distance(vec.rbegin(), it)) + 1;
 }
 
 int score(vector<int>& row, vector<int>& col, int i, int j){
@@ -99,11 +99,9 @@ int score(vector<int>& row, vector<int>& col, int i, int j){
     vector<int> right_half(row.begin() + j + 1, row.end());
     vector<int> up_half(col.begin(), col.begin() + i);
     vector<int> down_half(col.begin() + i + 1, col.end());
-    reverse(left_half.begin(), left_half.end());
-    reverse(up_half.begin(), up_half.end());
-    auto left_it = find_if(left_half.begin(), left_half.end(), first_bigger_than_elem);
+    auto left_it = find_if(left_half.rbegin(), left_half.rend(), first_bigger_than_elem);
     auto right_it = find_if(right_half.begin(), right_half.end(), first_bigger_than_elem);
-    auto up_it = find_if(up_half.begin(), up_half.end(), first_bigger_than_elem);
+    auto up_it = find_if(up_half.rbegin(), up_half.rend(), first_bigger_than_elem);
     auto down_it = find_if(down_half.begin(), down_half.end(), first_bigger_than_elem);
     return rate(left_half, left_it) * rate(right_half, right_it) * rate(up_half, up_it) * rate(down_half, down_it);
 }
@@ -127,31 +125,17 @@ void parte2() {
     cout << "Best scenic score: " << best_scenic_score << endl;
 }
 
-
-
-void prueba(){
-    // create a sample vector of int
-    vector<int> v = {9, 2, 6, 4, 5, 7, 6, 8 , 10};
-    int current_i = 4;
-    int current = *(v.begin()+4);
-    // copy the vector and reverse it
-    vector<int> v2(current_i);
-    copy(v.begin(), v.begin()+current_i, v2.begin());
-    reverse(v2.begin(), v2.end());
-    // get the first element bigger than current in v2
-    auto it = find_if(v2.begin(), v2.end(), [current](int i){return i > current;});
-    auto it2 = find_if(v.begin()+current_i, v.end(), [current](int i){return i > current;});
-    // print the results
-    cout << "Current: " << current << endl;
-    cout << "Left: " << *it << endl;
-    cout << "Right: " << *it2 << endl;
-
-}
-
 int main() {
     cout << "Dia X" << endl;
+    using namespace std::chrono; 
+    auto start = high_resolution_clock::now(); 
     // parte1();
-    // prueba();
     parte2();
+    auto stop = high_resolution_clock::now(); 
+    cout << duration_cast<microseconds>(stop - start).count() << endl; 
+    start = high_resolution_clock::now(); 
+    parte22(); stop = high_resolution_clock::now(); 
+    cout << duration_cast<microseconds>(stop - start).count() << endl; 
+
     return 0;
 }
