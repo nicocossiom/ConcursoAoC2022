@@ -127,15 +127,7 @@ void parte2() {
 
 int main() {
     cout << "Dia X" << endl;
-    using namespace std::chrono; 
-    auto start = high_resolution_clock::now(); 
-    // parte1();
+    parte1();
     parte2();
-    auto stop = high_resolution_clock::now(); 
-    cout << duration_cast<microseconds>(stop - start).count() << endl; 
-    start = high_resolution_clock::now(); 
-    parte22(); stop = high_resolution_clock::now(); 
-    cout << duration_cast<microseconds>(stop - start).count() << endl; 
-
     return 0;
 }
