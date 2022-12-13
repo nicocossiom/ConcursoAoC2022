@@ -16,6 +16,8 @@ FetchContent_Declare(fmt
 FetchContent_MakeAvailable(fmt)
 find_package(Threads REQUIRED) # for pthread
 
+add_subdirectory(Pruebas)
+
 add_subdirectory(utils)
 add_subdirectory(Dia01)
 add_subdirectory(Dia02)
