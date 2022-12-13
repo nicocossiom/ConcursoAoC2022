@@ -27,7 +27,7 @@ class Monkey{
         int number; 
         string operation;
         string second_operand; 
-        map<bool, int> test_opts;
+        map<bool, int> index_monkeys_available;
         deque<long int> items_held; 
         u_int64_t inspections = 0; 
         int worry_divisor;
@@ -48,9 +48,9 @@ class Monkey{
             regex_search(lines[3], match, re3);
             this->divisor = (stoi(match[0]));
             regex_search(lines[4], match, re3);
-            this->test_opts[true] = stoi(match[0]);
+            this->index_monkeys_available[true] = stoi(match[0]);
             regex_search(lines[5], match, re3);
-            this->test_opts[false] = stoi(match[0]);
+            this->index_monkeys_available[false] = stoi(match[0]);
 
         }
 
@@ -88,7 +88,7 @@ class MonkeyGame{
                 item = available_operations.at(monkey.operation)(item, second);
                 item = round(item / monkey.worry_divisor);
                 item = item % common_denominator;
-                int monkey_num = monkey.test_opts[item % monkey.divisor == 0];
+                int monkey_num = monkey.index_monkeys_available[item % monkey.divisor == 0];
                 monkeys[monkey_num].items_held.push_back(item);
             }
         }

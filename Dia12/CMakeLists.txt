@@ -1,5 +1,5 @@
-add_executable(DiaX DiaX.cpp)
+add_executable(Dia12 Dia12.cpp)
 target_link_libraries(
-    DiaX
+    Dia12
     aocutils
 )
