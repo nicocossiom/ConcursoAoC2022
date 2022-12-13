@@ -64,7 +64,6 @@ void parte2() {
         int col = (cycles-1) % 40;
         // see if the x_register is within col +- 1
         crt[row][col] = (abs(x_register - col) <= 1) ? '#' : ' '; 
-        cout << "Pixel: " << row << ", " << col << " -> " << crt[row][col] << endl;
     };
     while (getline(input, line) && cycles < 240) {
         size_t pos = line.find(' ');
